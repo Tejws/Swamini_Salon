@@ -1,0 +1,369 @@
+/* Reset and base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f4f2; /* soft neutral */
+  color: #3a3a3a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 25px 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(180, 140, 155, 0.15);
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+header h1 {
+  color: #7b1e5a; /* deep mauve */
+  font-weight: 700;
+  font-size: 2.25rem;
+  margin-bottom: 6px;
+  user-select: none;
+}
+header p {
+  color: #a87194;
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Cards */
+.card {
+  background-color: #faf5f7;
+  padding: 22px 25px;
+  margin-bottom: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(191, 142, 167, 0.12);
+  border: 1px solid #e7d9df;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 24px rgba(191, 142, 167, 0.25);
+}
+
+.card h2,
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 14px;
+  color: #82275e;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Text in cards */
+.card p {
+  color: #5c4354;
+  font-size: 1rem;
+  line-height: 1.5;
+  user-select: none;
+}
+
+/* Form inputs and selects */
+input[type="text"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 1.8px solid #c59fbf;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline-offset: 2px;
+  outline-color: transparent;
+  font-weight: 500;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus {
+  border-color: #82275e;
+  box-shadow: 0 0 8px rgba(130, 39, 94, 0.5);
+  outline-color: #82275e;
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 14px 0;
+  margin-top: 15px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+  background: linear-gradient(90deg, #82275e, #b54b7e);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(183, 75, 126, 0.4);
+  user-select: none;
+  transition: background 0.4s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #b54b7e, #82275e);
+  box-shadow: 0 12px 24px rgba(183, 75, 126, 0.7);
+}
+
+button:active {
+  transform: scale(0.97);
+  box-shadow: 0 6px 14px rgba(183, 75, 126, 0.8);
+}
+
+/* Queue List */
+#queueList {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  max-height: 180px;
+  overflow-y: auto;
+  border-radius: 12px;
+  border: 1px solid #d7b9c6;
+  background: #fff0f6;
+  box-shadow: inset 0 0 8px rgba(183, 75, 126, 0.1);
+}
+
+#queueList li {
+  padding: 12px 18px;
+  border-bottom: 1px solid #e9d6de;
+  font-weight: 600;
+  color: #82275e;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+}
+
+#queueList li:hover {
+  background-color: #f9e7ef;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+  background: #f3d9e3;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 18px;
+  margin: 15px 0 10px 0;
+  box-shadow: inset 0 0 8px rgba(183, 75, 126, 0.25);
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #b54b7e, #82275e);
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+  border-radius: 12px 0 0 12px;
+  box-shadow: 0 3px 12px rgba(183, 75, 126, 0.7);
+}
+
+/* Booking Info Section */
+.your-info {
+  background: #f9e7ef;
+  padding: 20px 22px;
+  border-radius: 16px;
+  border: 1.5px solid #b54b7e;
+  box-shadow: 0 4px 14px rgba(183, 75, 126, 0.2);
+  color: #6f2f56;
+  user-select: none;
+}
+
+.your-info h2 {
+  margin-bottom: 12px;
+  color: #9d3c73;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.your-info p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+/* Your buttons inside your-info */
+.your-info button {
+  width: 48%;
+  padding: 12px 0;
+  margin-top: 10px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #82275e, #b54b7e);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(183, 75, 126, 0.4);
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.your-info button:hover {
+  background: linear-gradient(90deg, #b54b7e, #82275e);
+  box-shadow: 0 12px 20px rgba(183, 75, 126, 0.6);
+}
+
+.your-info button:active {
+  transform: scale(0.98);
+  box-shadow: 0 6px 14px rgba(183, 75, 126, 0.7);
+}
+
+/* Gallery */
+.card img {
+  border-radius: 14px;
+  width: 100%;
+  display: block;
+  margin-top: 12px;
+  box-shadow: 0 8px 18px rgba(183, 75, 126, 0.25);
+  user-select: none;
+}
+
+/* Admin link */
+p a {
+  color: #82275e;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+  user-select: none;
+}
+
+p a:hover {
+  border-bottom-color: #b54b7e;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .app-container {
+    margin: 15px 10px;
+    padding: 20px 18px;
+  }
+
+  header h1 {
+    font-size: 1.75rem;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  select,
+  button {
+    font-size: 1rem;
+  }
+
+  #queueList li {
+    font-size: 0.95rem;
+    padding: 10px 14px;
+  }
+
+  .your-info button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+/* Desktop layout tweaks for screens wider than 900px */
+@media (min-width: 900px) {
+  .app-container {
+    max-width: 900px;
+    padding: 40px 50px;
+    margin: 50px auto;
+  }
+
+  header h1 {
+    font-size: 3rem;
+  }
+
+  header p {
+    font-size: 1.2rem;
+  }
+
+  /* Arrange booking form fields side by side */
+  .booking form {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  /* Inputs take equal widths */
+  .booking form input[type="text"],
+  .booking form input[type="email"],
+  .booking form select {
+    flex: 1 1 200px;
+    margin-top: 0 !important;
+  }
+
+  /* Button aligned to bottom right */
+  .booking form button {
+    flex: 0 0 180px;
+    align-self: flex-end;
+    margin-top: 0 !important;
+  }
+
+  /* Show service details to the right of form */
+  #serviceDetails {
+    margin-top: 0 !important;
+    font-size: 1rem;
+    color: #6a3a5b;
+    font-weight: 600;
+    flex: 1 1 180px;
+    align-self: center;
+    padding-left: 20px;
+  }
+
+  /* Your Info buttons side by side */
+  .your-info button {
+    width: auto;
+    min-width: 160px;
+    margin-right: 15px;
+  }
+
+  /* Queue Status section horizontal layout */
+  .queue-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .queue-status h2 {
+    flex: 0 0 250px;
+  }
+
+  .progress-bar-container {
+    flex: 1 1 400px;
+    margin: 0 !important;
+  }
+
+  #queueList {
+    flex: 1 1 100%;
+    max-height: 250px;
+  }
+
+  /* Gallery card */
+  .card img {
+    max-height: 250px;
+    object-fit: cover;
+  }
+
+  /* Admin link */
+  p {
+    margin-top: 40px;
+    font-size: 1.1rem;
+  }
+
+  p a {
+    font-size: 1.2rem;
+  }
+}

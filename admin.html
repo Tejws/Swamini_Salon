@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard | Salon</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <header>
+      <h1>💼 Admin Dashboard</h1>
+      <p>Manage live queue here.</p>
+    </header>
+
+    <section class="card">
+      <input type="password" id="adminPin" placeholder="Enter Admin PIN" />
+    </section>
+
+    <section class="card" id="adminControls" style="display: none;">
+      <h2>Now Serving: <span id="nowServing">1</span></h2>
+      <h3>Total in Queue: <span id="queueCount">0</span></h3>
+      <ul id="queueList"></ul>
+      <button onclick="nextCustomer()">Next</button>
+      <button onclick="skipCustomer()">Skip</button>
+      <button onclick="clearQueue()">Clear Queue</button>
+    </section>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

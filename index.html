@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nitya Siya Salon Queue</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff0f6; /* baby pink background */
+      color: #3a3a3a;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .app-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 30px 40px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(180, 140, 155, 0.15);
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      color: #b54b7e; /* deeper pink */
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 6px;
+      user-select: none;
+    }
+
+    header p {
+      color: #d87fb2;
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin: 0;
+      font-style: italic;
+    }
+
+    /* Layout containers */
+    .main-content {
+      display: flex;
+      gap: 40px;
+    }
+
+    .left-panel {
+      flex: 1 1 45%;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .right-panel {
+      flex: 1 1 55%;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    /* Cards */
+    .card {
+      background-color: #fff0f6;
+      padding: 24px 28px;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(191, 142, 167, 0.12);
+      border: 1px solid #f6c1db;
+      transition: box-shadow 0.3s ease;
+      user-select: none;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 28px rgba(191, 142, 167, 0.25);
+    }
+
+    .card h2,
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      color: #b54b7e;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .card p {
+      color: #82275e;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Booking form */
+    .booking form {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+      flex: 1 1 200px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: 1.8px solid #f4c1da;
+      background-color: #fff;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      outline-offset: 2px;
+      outline-color: transparent;
+      font-weight: 500;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus {
+      border-color: #b54b7e;
+      box-shadow: 0 0 8px rgba(181, 75, 126, 0.5);
+      outline-color: #b54b7e;
+    }
+
+    button {
+      flex: 0 0 160px;
+      padding: 14px 0;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: white;
+      background: linear-gradient(90deg, #b54b7e, #d87fb2);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(216, 127, 178, 0.4);
+      user-select: none;
+      transition: background 0.4s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #d87fb2, #b54b7e);
+      box-shadow: 0 12px 24px rgba(216, 127, 178, 0.7);
+    }
+
+    button:active {
+      transform: scale(0.97);
+      box-shadow: 0 6px 14px rgba(216, 127, 178, 0.8);
+    }
+
+    /* Service details next to form */
+    #serviceDetails {
+      flex: 1 1 180px;
+      font-size: 1rem;
+      color: #82275e;
+      font-weight: 600;
+      padding-left: 10px;
+      align-self: center;
+    }
+
+    /* Your booking info */
+    .your-info {
+      background: #fce9f4;
+      padding: 22px 26px;
+      border-radius: 16px;
+      border: 1.5px solid #d87fb2;
+      box-shadow: 0 4px 18px rgba(216, 127, 178, 0.25);
+      color: #82275e;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .your-info h2 {
+      margin-bottom: 14px;
+      color: #b54b7e;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .your-info p {
+      font-size: 1.1rem;
+      margin: 12px 0;
+    }
+
+    .your-info button {
+      width: 48%;
+      padding: 14px 0;
+      margin-top: 12px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #b54b7e, #d87fb2);
+      border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(216, 127, 178, 0.5);
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+
+    .your-info button:hover {
+      background: linear-gradient(90deg, #d87fb2, #b54b7e);
+      box-shadow: 0 12px 28px rgba(216, 127, 178, 0.75);
+    }
+
+    .your-info button:active {
+      transform: scale(0.98);
+      box-shadow: 0 6px 16px rgba(216, 127, 178, 0.7);
+    }
+
+    /* Queue Status */
+    .queue-status h2 {
+      margin-bottom: 12px;
+      color: #b54b7e;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .progress-bar-container {
+      background: #f8cbd9;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 22px;
+      margin: 20px 0 12px 0;
+      box-shadow: inset 0 0 12px rgba(216, 127, 178, 0.3);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #d87fb2, #b54b7e);
+      width: 0%;
+      transition: width 0.6s ease-in-out;
+      border-radius: 16px 0 0 16px;
+      box-shadow: 0 4px 16px rgba(216, 127, 178, 0.6);
+    }
+
+    #queueList {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0 0;
+      max-height: 240px;
+      overflow-y: auto;
+      border-radius: 14px;
+      border: 1.8px solid #f4c1da;
+      background: #fff0f6;
+      box-shadow: inset 0 0 10px rgba(216, 127, 178, 0.15);
+    }
+
+    #queueList li {
+      padding: 14px 18px;
+      border-bottom: 1px solid #f8c1db;
+      font-weight: 600;
+      color: #b54b7e;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      user-select: none;
+      transition: background-color 0.25s ease;
+      cursor: default;
+    }
+
+    #queueList li:hover {
+      background-color: #f8d6e5;
+    }
+
+    /* Gallery */
+    .gallery p {
+      margin-bottom: 16px;
+      font-weight: 600;
+      color: #82275e;
+      font-size: 1.1rem;
+    }
+
+    .gallery img {
+      max-height: 260px;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 10px 20px rgba(216, 127, 178, 0.35);
+      user-select: none;
+      width: 100%;
+      display: block;
+    }
+
+    /* Admin link */
+    p.admin-link {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    p.admin-link a {
+      color: #b54b7e;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+      user-select: none;
+    }
+
+    p.admin-link a:hover {
+      border-bottom-color: #d87fb2;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .main-content {
+        flex-direction: column;
+      }
+
+      .left-panel,
+      .right-panel {
+        flex: 1 1 100%;
+      }
+
+      .booking form {
+        flex-direction: column;
+      }
+
+      .booking form button {
+        flex: 1 1 100%;
+      }
+
+      #serviceDetails {
+        padding-left: 0;
+        margin-top: 10px;
+      }
+
+      .your-info button {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>🌸 Nitya Siya Beauty Salon</h1>
+      <p>Book your queue slot and skip the wait!</p>
+    </header>
+
+    <div class="main-content">
+      <div class="left-panel">
+        <!-- Booking Section -->
+        <section class="card booking">
+          <h2>Book Your Turn</h2>
+          <form id="bookingForm">
+            <input type="text" id="name" placeholder="Your Name" required />
+            <select id="service">
+              <option value="Haircut" data-time="20" data-price="200">💇‍♀️ Haircut - 20 mins | ₹200</option>
+              <option value="Facial" data-time="30" data-price="300">🌼 Facial - 30 mins | ₹300</option>
+              <option value="Hair Color" data-time="45" data-price="500">🎨 Hair Color - 45 mins | ₹500</option>
+            </select>
+            <input type="email" id="email" placeholder="Enter email for notification (optional)" />
+            <button type="submit">Book Now</button>
+          </form>
+          <div id="serviceDetails"></div>
+        </section>
+
+        <!-- Your Info -->
+        <section class="card your-info" id="yourInfo" style="display: none;">
+          <h2>Your Booking Info</h2>
+          <p>Queue Number: <span id="yourNumber"></span></p>
+          <p>Estimated Wait Time: <span id="waitTime"></span></p>
+          <p id="notifyMessage" style="color: green; font-weight: bold;"></p>
+          <button onclick="cancelBooking()">Cancel My Booking</button>
+          <button onclick="downloadTicket()">Download Ticket</button>
+        </section>
+      </div>
+
+      <div class="right-panel">
+        <!-- Offers Section -->
+        <section class="card offers">
+          <h3>🎉 Today’s Offer</h3>
+          <p>💆‍♀️ Hair Spa @ ₹399 only! Book now and relax in style.</p>
+        </section>
+
+        <!-- Queue Status -->
+        <section class="card queue-status">
+          <h2>Now Serving: <span id="nowServing">1</span></h2>
+          <div class="progress-bar-container">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+          <ul id="queueList"></ul>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="card gallery">
+          <h3>📸 Our Work</h3>
+          <p>See our latest transformations and happy customers.</p>
+          <img src="https://via.placeholder.com/400x200?text=Salon+Work+1" alt="Gallery 1" />
+        </section>
+      </div>
+    </div>
+
+    <p class="admin-link">
+      <a href="admin.html">Go to Admin Dashboard</a>
+    </p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
