@@ -309,34 +309,66 @@
     }
 
     /* Responsive */
-    @media (max-width: 900px) {
-      .main-content {
-        flex-direction: column;
-      }
+   /* Enhanced Responsive Styles */
+@media (max-width: 900px) {
+  .main-content {
+    flex-direction: column;
+  }
 
-      .left-panel,
-      .right-panel {
-        flex: 1 1 100%;
-      }
+  .left-panel,
+  .right-panel {
+    flex: 1 1 100%;
+  }
 
-      .booking form {
-        flex-direction: column;
-      }
+  .booking form {
+    flex-direction: column;
+  }
 
-      .booking form button {
-        flex: 1 1 100%;
-      }
+  .booking form input,
+  .booking form select,
+  .booking form button {
+    flex: 1 1 100%;
+    margin-top: 12px;
+  }
 
-      #serviceDetails {
-        padding-left: 0;
-        margin-top: 10px;
-      }
+  #serviceDetails {
+    padding-left: 0;
+    margin-top: 8px;
+    font-size: 0.95rem;
+  }
 
-      .your-info button {
-        width: 100%;
-        margin-top: 10px;
-      }
-    }
+  .your-info button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  header h1 {
+    font-size: 1.9rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  #queueList li {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+
+  .progress-bar-container {
+    height: 16px;
+    margin: 15px 0 10px 0;
+  }
+
+  .progress-bar {
+    border-radius: 12px 0 0 12px;
+  }
+
+  .gallery img {
+    max-height: 180px;
+  }
+}
+
   </style>
 </head>
 <body>
