@@ -142,3 +142,13 @@ modal.addEventListener('click', (e) => {
 updateQueueView();
 if (userBooking) showBookingInfo(userBooking);
 serviceInput.dispatchEvent(new Event("change"));
+const reviews = document.querySelectorAll('.review-slider .review');
+let current = 0;
+
+function showNextReview() {
+  reviews[current].classList.remove('active');
+  current = (current + 1) % reviews.length;
+  reviews[current].classList.add('active');
+}
+
+setInterval(showNextReview, 3000);  // Change review every 3 seconds

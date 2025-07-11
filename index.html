@@ -9,6 +9,54 @@
     * {
       box-sizing: border-box;
     }
+.google-review-section {
+  background: #fff0f6;
+  border: 1px solid #f3c6d6;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 350px;
+  font-family: Arial, sans-serif;
+}
+
+.google-review-section h3 {
+  margin-bottom: 15px;
+  color: #d6336c;
+  font-weight: bold;
+}
+
+.review-slider {
+  position: relative;
+  height: 100px;
+  overflow: hidden;
+}
+
+.review {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.review.active {
+  opacity: 1;
+  position: relative;
+}
+
+.review p {
+  margin: 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.review .author {
+  margin-top: 8px;
+  font-weight: 600;
+  color: #a6336c;
+  font-size: 14px;
+  text-align: right;
+}
 
     body {
       margin: 0;
@@ -280,23 +328,20 @@
 }
 
 .gallery-item {
-  width: 100%;
-  height: 320px; /* Increased fixed height */
-  overflow: hidden;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 10px 24px rgba(183, 75, 126, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  position: relative !important;
+  height: 320px !important;
+  display: flex !important;
+  align-items: stretch !important;
+  overflow: hidden !important;
 }
 
 .gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* ensures image fills the card properly */
-  display: block;
-  transition: transform 0.3s ease;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
 }
+
 
 .gallery-item:hover {
   transform: translateY(-4px);
@@ -348,6 +393,27 @@
 @keyframes zoomIn {
   from { transform: scale(0.7); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: 1fr; /* Single column layout for mobile */
+  }
+
+  .gallery-item {
+    height: 320px; /* Taller card height */
+    display: flex;
+    align-items: stretch;
+  }
+
+  .gallery-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }.gallery-item img {
+  object-position: center top;
+}
+
 }
 
 
@@ -436,90 +502,109 @@
 </head>
 <body>
   <div class="app-container">
-    <header>
-      <h1>🌸 Nitya Siya Beauty Salon</h1>
-      <p>Book your queue slot and skip the wait!</p>
-    </header>
+  <header>
+    <h1>🌸 Nitya Siya Beauty Salon</h1>
+    <p>Book your queue slot and skip the wait!</p>
+  </header>
 
-    <div class="main-content">
-      <div class="left-panel">
-        <!-- Booking Section -->
-        <section class="card booking">
-          <h2>Book Your Turn</h2>
-          <form id="bookingForm">
-            <input type="text" id="name" placeholder="Your Name" required />
-            <select id="service">
-              <option value="Haircut" data-time="20" data-price="200">💇‍♀️ Haircut - 20 mins | ₹200</option>
-              <option value="Facial" data-time="30" data-price="300">🌼 Facial - 30 mins | ₹300</option>
-              <option value="Hair Color" data-time="45" data-price="500">🎨 Hair Color - 45 mins | ₹500</option>
-            </select>
-            <input type="email" id="email" placeholder="Enter email for notification (optional)" />
-            <button type="submit">Book Now</button>
-          </form>
-          <div id="serviceDetails"></div>
-        </section>
+  <div class="main-content">
+    <div class="left-panel">
+      <!-- Booking Section -->
+      <section class="card booking">
+        <h2>Book Your Turn</h2>
+        <form id="bookingForm">
+          <input type="text" id="name" placeholder="Your Name" required />
+          <select id="service">
+            <option value="Haircut" data-time="20" data-price="200">💇‍♀️ Haircut - 20 mins | ₹200</option>
+            <option value="Facial" data-time="30" data-price="300">🌼 Facial - 30 mins | ₹300</option>
+            <option value="Hair Color" data-time="45" data-price="500">🎨 Hair Color - 45 mins | ₹500</option>
+          </select>
+          <input type="email" id="email" placeholder="Enter email for notification (optional)" />
+          <button type="submit">Book Now</button>
+        </form>
+        <div id="serviceDetails"></div>
+      </section>
 
-        <!-- Your Info -->
-        <section class="card your-info" id="yourInfo" style="display: none;">
-          <h2>Your Booking Info</h2>
-          <p>Queue Number: <span id="yourNumber"></span></p>
-          <p>Estimated Wait Time: <span id="waitTime"></span></p>
-          <p id="notifyMessage" style="color: green; font-weight: bold;"></p>
-          <button onclick="cancelBooking()">Cancel My Booking</button>
-          <button onclick="downloadTicket()">Download Ticket</button>
-        </section>
-      </div>
+      <!-- Your Info -->
+      <section class="card your-info" id="yourInfo" style="display: none;">
+        <h2>Your Booking Info</h2>
+        <p>Queue Number: <span id="yourNumber"></span></p>
+        <p>Estimated Wait Time: <span id="waitTime"></span></p>
+        <p id="notifyMessage" style="color: green; font-weight: bold;"></p>
+        <button onclick="cancelBooking()">Cancel My Booking</button>
+        <button onclick="downloadTicket()">Download Ticket</button>
+      </section>
 
-      <div class="right-panel">
-        <!-- Offers Section -->
-        <section class="card offers">
-          <h3>🎉 Today’s Offer</h3>
-          <p>💆‍♀️ Hair Spa @ ₹399 only! Book now and relax in style.</p>
-        </section>
-
-        <!-- Queue Status -->
-        <section class="card queue-status">
-          <h2>Now Serving: <span id="nowServing">1</span></h2>
-          <div class="progress-bar-container">
-            <div id="progressBar" class="progress-bar"></div>
+      <!-- Google Reviews Section moved here -->
+      <div class="google-review-section">
+        <h3>Google Reviews</h3>
+        <div class="review-slider">
+          <div class="review active">
+            <p>"Great service, highly recommend!"</p>
+            <p class="author">- John D.</p>
           </div>
-          <ul id="queueList"></ul>
-        </section>
-
-        <!-- Gallery Section -->
-<!-- Gallery Section -->
-<section class="card gallery">
-  <h3>📸 Our Work</h3>
-  <p>See our latest transformations and happy customers.</p>
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="1.jpg" alt="Salon Work 1" />
+          <div class="review">
+            <p>"Very professional and friendly staff."</p>
+            <p class="author">- Priya K.</p>
+          </div>
+          <div class="review">
+            <p>"I loved the ambience and quality."</p>
+            <p class="author">- Arjun S.</p>
+          </div>
+          <!-- Add more reviews as needed -->
+        </div>
+      </div>
     </div>
-    <div class="gallery-item">
-      <img src="2.jpg" alt="Salon Work 2" />
-    </div>
-    <div class="gallery-item">
-      <img src="3.jpg" alt="Salon Work 3" />
-    </div>
-    <div class="gallery-item">
-      <img src="4.jpg" alt="Salon Work 4" />
-    </div>
-  </div>
-</section>
 
-<!-- Modal Viewer -->
-<div id="imageModal" class="modal" style="display:none;">
-  <span class="close-btn" title="Close">&times;</span>
-  <img class="modal-content" id="modalImage" alt="Salon Work Full View" />
-</div>
+    <div class="right-panel">
+      <!-- Offers Section -->
+      <section class="card offers">
+        <h3>🎉 Today’s Offer</h3>
+        <p>💆‍♀️ Hair Spa @ ₹399 only! Book now and relax in style.</p>
+      </section>
 
+      <!-- Queue Status -->
+      <section class="card queue-status">
+        <h2>Now Serving: <span id="nowServing">1</span></h2>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+        <ul id="queueList"></ul>
+      </section>
 
+      <!-- Gallery Section -->
+      <section class="card gallery">
+        <h3>📸 Our Work</h3>
+        <p>See our latest transformations and happy customers.</p>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="1.jpg" alt="Salon Work 1" />
+          </div>
+          <div class="gallery-item">
+            <img src="2.jpg" alt="Salon Work 2" />
+          </div>
+          <div class="gallery-item">
+            <img src="3.jpg" alt="Salon Work 3" />
+          </div>
+          <div class="gallery-item">
+            <img src="4.jpg" alt="Salon Work 4" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal Viewer -->
+      <div id="imageModal" class="modal" style="display:none;">
+        <span class="close-btn" title="Close">&times;</span>
+        <img class="modal-content" id="modalImage" alt="Salon Work Full View" />
+      </div>
     </div>
 
     <p class="admin-link">
       <a href="admin.html">Go to Admin Dashboard</a>
     </p>
   </div>
+</div>
+
 
   <script src="script.js"></script>
 </body>
