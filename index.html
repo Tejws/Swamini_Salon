@@ -272,22 +272,85 @@
     }
 
     /* Gallery */
-    .gallery p {
-      margin-bottom: 16px;
-      font-weight: 600;
-      color: #82275e;
-      font-size: 1.1rem;
-    }
+ .gallery-grid { 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Increased min size */
+  gap: 20px;
+  margin-top: 20px;
+}
 
-    .gallery img {
-      max-height: 260px;
-      object-fit: cover;
-      border-radius: 18px;
-      box-shadow: 0 10px 20px rgba(216, 127, 178, 0.35);
-      user-select: none;
-      width: 100%;
-      display: block;
-    }
+.gallery-item {
+  width: 100%;
+  height: 320px; /* Increased fixed height */
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(183, 75, 126, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ensures image fills the card properly */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(183, 75, 126, 0.35);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+/* Modal remains the same */
+.modal {
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(130, 39, 94, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.7);
+  animation: zoomIn 0.3s ease forwards;
+}
+
+.close-btn {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.close-btn:hover {
+  color: #f5a9cc;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
 
     /* Admin link */
     p.admin-link {
@@ -424,12 +487,33 @@
         </section>
 
         <!-- Gallery Section -->
-        <section class="card gallery">
-          <h3>📸 Our Work</h3>
-          <p>See our latest transformations and happy customers.</p>
-          <img src="https://via.placeholder.com/400x200?text=Salon+Work+1" alt="Gallery 1" />
-        </section>
-      </div>
+<!-- Gallery Section -->
+<section class="card gallery">
+  <h3>📸 Our Work</h3>
+  <p>See our latest transformations and happy customers.</p>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="1.jpg" alt="Salon Work 1" />
+    </div>
+    <div class="gallery-item">
+      <img src="2.jpg" alt="Salon Work 2" />
+    </div>
+    <div class="gallery-item">
+      <img src="3.jpg" alt="Salon Work 3" />
+    </div>
+    <div class="gallery-item">
+      <img src="4.jpg" alt="Salon Work 4" />
+    </div>
+  </div>
+</section>
+
+<!-- Modal Viewer -->
+<div id="imageModal" class="modal" style="display:none;">
+  <span class="close-btn" title="Close">&times;</span>
+  <img class="modal-content" id="modalImage" alt="Salon Work Full View" />
+</div>
+
+
     </div>
 
     <p class="admin-link">

@@ -113,6 +113,30 @@ serviceInput.addEventListener("change", () => {
   const price = selected.dataset.price;
   serviceDetails.textContent = `⏱ Duration: ${time} mins | 💰 Price: ₹${price}`;
 });
+// Modal image viewer logic
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImage');
+const closeBtn = document.querySelector('.close-btn');
+const galleryImages = document.querySelectorAll('.gallery-grid img');
+
+galleryImages.forEach(img => {
+  img.addEventListener('click', () => {
+    modal.style.display = 'flex';
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+// Also close modal if user clicks outside the image
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
 
 // Initialize
 updateQueueView();
